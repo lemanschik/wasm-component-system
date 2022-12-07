@@ -28,3 +28,11 @@ const wasmModuleBasedInputSource = new ReadableStream({
   }
 })
 ```
+
+
+```js
+const wasmModuleBasedInputSource = new ReadableStream({
+  start: async (controller) => (await WebAssembly.instantiateStreaming(fetch("simple.wasm"), 
+      { imports: { imported_func: (arg) => controller.enqueue(arg) } })).instance.exports.exported_func(),
+})
+```
