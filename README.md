@@ -22,7 +22,7 @@ WebAssembly.instantiateStreaming(fetch("simple.wasm"), importObject).then(
 const wasmModuleBasedInputSource = new ReadableStream({
   start: (controller) => {
     const importObject1 = { imports: { imported_func: (arg) => controller.enqueue(arg) } };
-    WebAssembly.instantiateStreaming(fetch("simple.wasm"), importObject).then(
+    WebAssembly.instantiateStreaming(fetch("simple.wasm"), importObject1).then(
       (loadedInMemory) => loadedInMemory.instance.exports.exported_func()
     );
   }
